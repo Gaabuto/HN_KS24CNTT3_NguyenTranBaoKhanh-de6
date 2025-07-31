@@ -32,7 +32,7 @@ void printScreen() {
     printf("\n5. Khoi phuc sach");
     printf("\n6. Hien thi cac sach dang mo");
     printf("\n7. Thoat");
-    printf("===============================");
+    printf("\n===============================");
     printf("\nMoi ban nhap lua chon:");
 }
 
@@ -132,8 +132,15 @@ void viewRecentHistory(closedQueue* q) {
     }
 }
 
-void restoreBook(BookStack** head, closedQueue* q) {
-    closedQueue* temp = q;
+void printStack(BookStack* head) {
+    if (isEmptyStack(head)) {
+        printf("Khong co sach dang mo.\n");
+        return;
+    }
+    while (head != NULL) {
+        printf("- %s\n", head->book.bookTitle);
+        head = head->next;
+    }
 }
 
 int main() {
@@ -157,9 +164,8 @@ int main() {
             case 4:
                 viewRecentHistory(&queue);
                 break;
-            case 5:
-                restoreBook(&stack, &queue);
-                break;
+            case 6:
+                printStack(stack);
             case 7:
                 break;
             default:
